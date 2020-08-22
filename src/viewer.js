@@ -216,12 +216,13 @@ export class Viewer {
         }
         
         return (path || '') + url;
-        
+
       });
 
       const loader = new GLTFLoader(manager);
       loader.setCrossOrigin('anonymous');
 
+      // Added DDS Loader
       const dracoLoader = new DRACOLoader();
       const ddsLoader = new DDSLoader();
       dracoLoader.setDecoderPath( 'assets/draco/' );
