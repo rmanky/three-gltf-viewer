@@ -32,6 +32,7 @@ import { GUI } from 'dat.gui';
 
 import { environments } from '../assets/environment/index.js';
 import { createBackground } from '../lib/three-vignette.js';
+import { DDSLoader } from 'three/examples/jsm/loaders/DDSLoader';
 
 const DEFAULT_CAMERA = '[default]';
 
@@ -213,17 +214,19 @@ export class Viewer {
           blobURLs.push(blobURL);
           return blobURL;
         }
-
+        
         return (path || '') + url;
-
+        
       });
 
       const loader = new GLTFLoader(manager);
       loader.setCrossOrigin('anonymous');
 
       const dracoLoader = new DRACOLoader();
+      const ddsLoader = new DDSLoader();
       dracoLoader.setDecoderPath( 'assets/draco/' );
       loader.setDRACOLoader( dracoLoader );
+      loader.setDDSLoader(ddsLoader);
 
       const blobURLs = [];
 
